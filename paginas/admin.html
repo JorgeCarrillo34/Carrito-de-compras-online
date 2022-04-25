@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graficos de ventas</title>
+    <link rel="stylesheet" href="/css/graficos.css">
+</head>
+<body>
+    <div class="chartMenu">
+        <h1>Porcentaje de incremento de ventas por producto del ultimo mes</h1>
+      </div>
+      <div class="chartCard">
+        <div class="chartBox" style="float: left; margin: 10px;">
+          <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="chartBox" style="float: left;  margin: 10px;">
+            <canvas id="myChart2"></canvas>
+          </div>
+          <div class="chartBox" style="float: left;">
+            <canvas id="myChart3"></canvas>
+          </div>
+      </div>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" 
+      integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+      <script>
+      // setup 
+      const data = {
+        labels: ['Hotwheels', 'Halo', 'Caja de herramientas', 'Laptop', 'Play','Gafas','Audifonos','Telefono','Balon','Cuadro'],
+        datasets: [{
+          label: 'Weekly Sales',
+          data: [18, 12, 6, 9, 12,43,23,26,34,45],
+          backgroundColor: [
+            'rgba(255, 26, 104, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(0, 0, 0, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 26, 104, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(0, 0, 0, 1)'
+          ],
+          borderWidth: 1
+        }]
+      };
+  
+      // config 
+      const config = {
+        type: 'pie',
+        data,
+        options: {
+          scales: {
+          },
+          plugins:{
+              tooltip:{
+                  enabled: false
+              },
+              datalabels:{
+                  formatter: (value,context) => {
+                      const datapoints= context.chart.data.datasets[0].data;
+                      function totalSum(total,datapoint){
+                          return total + datapoint;
+                      }
+                      
+                      const totalvalue = datapoints.reduce(totalSum,0);
+                      const percentageValue = (value/totalvalue *100).toFixed(1);
+  
+                      return `${percentageValue}%`;
+                  },
+                 // color :'white'
+              }
+          }
+        },
+        plugins: [ChartDataLabels]
+      };
+  
+      // render init block
+      const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+
+
+      const data2 = {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        datasets: [{
+          label: 'Weekly Sales',
+          data: [18, 12, 6, 9],
+          backgroundColor: [
+            'rgba(255, 26, 104, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(0, 0, 0, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 26, 104, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(0, 0, 0, 1)'
+          ],
+          borderWidth: 1
+        }]
+      };
+
+      // config 
+      const config1 = {
+        type: 'polarArea',
+        data:data2,
+        options: {
+          scales: {
+          },
+          plugins:{
+              tooltip:{
+                  enabled: false
+              },
+              datalabels:{
+                  formatter: (value,context) => {
+                      const datapoints= context.chart.data.datasets[0].data;
+                      function totalSum(total,datapoint){
+                          return total + datapoint;
+                      }
+                      
+                      const totalvalue = datapoints.reduce(totalSum,0);
+                      const percentageValue = (value/totalvalue *100).toFixed(1);
+  
+                      return `${percentageValue}%`;
+                  },
+                 // color :'white'
+              }
+          }
+        },
+        plugins: [ChartDataLabels]
+      };
+  
+      // render init block
+      const myChart2 = new Chart(
+        document.getElementById('myChart2'),
+        config1
+      );
+
+      const data3 = {
+        labels: ['Hotwheels', 'Halo', 'Caja de herramientas', 'Laptop', 'Play','Gafas','Audifonos','Telefono','Balon','Cuadro'],
+        datasets: [{
+          //label: 'Weekly Sales',
+            type: 'bar',
+            label: 'Ventas de producto',
+            data: [10, 20, 30, 40,50,5,34,76,6,54],
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        },{
+            type: 'line',
+            label: 'Ventas del mes pasado',
+            data: [10, 30, 70, 24, 16, 5,22,76,4,54],
+            borderColor: 'rgb(54, 162, 235)'
+            }],
+        
+      };
+  
+      // config 
+      const config3 = {
+        type: 'scatter',
+        data: data3,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            },
+            labels:{
+              display: true
+            }
+          },
+          // plugins:{
+          //     tooltip:{
+          //         enabled: false
+          //     },
+          //     datalabels:{
+          //         formatter: (value,context) => {
+          //             const datapoints= context.chart.data.datasets[0].data;
+          //             function totalSum(total,datapoint){
+          //                 return total + datapoint;
+          //             }
+                      
+          //             const totalvalue = datapoints.reduce(totalSum,0);
+          //             const percentageValue = (value/totalvalue *100).toFixed(1);
+  
+          //             return `${percentageValue}%`;
+          //         },
+          //        // color :'white'
+          //     }
+          // }
+        },
+        // plugins: [ChartDataLabels]
+      };
+  
+      // render init block
+      const myChart3 = new Chart(
+        document.getElementById('myChart3'),
+        config3
+      );
+
+
+      </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+
+    <div class="login">
+        <div class="login-header">
+          <h1>Registro</h1>
+        </div>
+        <div class="login-form">
+          <h3>Username:</h3>
+          <input id="name" type="text" placeholder="Username"/><br>
+          <h3>Password:</h3>
+          <input id="pass" type="password" placeholder="Password"/>
+          <br>
+          <h3>Numero:</h3>
+          <input id="num" type="text" placeholder="Numero"/>
+          <br>
+          <h3>Correo:</h3>
+          <input id="corr" type="text" placeholder="correo"/>
+          <br>
+          <h3>Dirección:</h3>
+          <input id="dir"  type="text" placeholder="direccion"/>
+          <br>
+          <h3>Rol:</h3>
+          <select name="rol" id="rol">
+              <option value="admin">admin</option>
+              <option value="usuario">usuario</option>
+          </select>
+          <br>
+          <br>
+          <input type="button" value="Login" class="login-button" onclick="insertarData();"/>
+          <br>
+          <a class="sign-up" href="/paginas/index.html" style="margin: 15px;">Ya tiene una cuenta?</a>
+        </div>
+      </div>
+      <div class="error-page">
+        <div class="try-again">Error: Try again?</div>
+      </div>
+
+
+    <script src="/js/registro.js"></script>
+</body>
+</html>
